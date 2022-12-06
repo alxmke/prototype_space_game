@@ -54,9 +54,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Particles2D" type="Particles2D" parent="."]
+[node name="StarParticles" type="Particles2D" parent="."]
 position = Vector2( 320, 90 )
 amount = 200
 lifetime = 7.0
+preprocess = 3.0
 visibility_rect = Rect2( -10, -10, 20, 20 )
 process_material = SubResource( 1 )
