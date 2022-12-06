@@ -8,7 +8,12 @@ signal killed
 const ExplosionEffect = preload("res://ExplosionEffect.tscn")
 
 # Called when the node enters the scene tree for the first time.
-# func _ready(): pass
+func _ready(): 
+	var world = get_tree().current_scene
+	# if world.is_in_group("World") doesn't work?
+	if world.get_name() == 'World':
+		# warning-ignore:return_value_discarded
+		connect('killed', world, '_on_Enemy_killed')
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # func _process(delta): pass
@@ -20,6 +25,7 @@ func _on_Enemy_body_entered(body):
 	body.queue_free()
 	ARMOR -= 1
 	if ARMOR <= 0:
+		emit_signal('killed')
 		explode()
 
 func explode():

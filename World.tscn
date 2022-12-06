@@ -1,10 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://EnemySpawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://World.gd" type="Script" id=4]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 90, 1 )
+flag_disable_z = true
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = -150.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
 
 [node name="World" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="Background" type="ColorRect" parent="."]
 margin_right = 320.0
@@ -32,7 +45,7 @@ position = Vector2( 245, 141 )
 [node name="EnemySpawner" parent="." instance=ExtResource( 3 )]
 position = Vector2( 320, 19 )
 
-[node name="Label" type="Label" parent="."]
+[node name="ScoreLabel" type="Label" parent="."]
 anchor_right = 1.0
 margin_right = 320.0
 margin_bottom = 14.0
@@ -40,3 +53,10 @@ text = "Score = 0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 320, 90 )
+amount = 200
+lifetime = 7.0
+visibility_rect = Rect2( -10, -10, 20, 20 )
+process_material = SubResource( 1 )
