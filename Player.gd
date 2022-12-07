@@ -2,7 +2,7 @@ extends Area2D
 
 export var SPEED: float = 100
 
-const Bullet = preload("res://Bullet.tscn")
+const Laser = preload("res://Laser.tscn")
 onready var laser_timer = $LaserTimer
 export var fire_speed: float = 0.25 # seconds
 # Called when the node enters the scene tree for the first time.
@@ -22,10 +22,10 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_right"):
 		position.x += SPEED * delta
 	if Input.is_action_pressed("ui_accept") and fire_ready:
-		fire_bullet()
+		fire_laser()
 
-func fire_bullet():
-	var bullet = Bullet.instance()
+func fire_laser():
+	var bullet = Laser.instance()
 	var world = get_tree().current_scene
 	bullet.global_position = global_position
 	world.add_child(bullet)

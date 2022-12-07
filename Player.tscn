@@ -4,6 +4,7 @@
 [ext_resource path="res://Player.gd" type="Script" id=2]
 
 [node name="Ship" type="Area2D"]
+z_index = 1
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

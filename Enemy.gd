@@ -6,6 +6,7 @@ export var ARMOR: float = 3
 signal killed
 
 const ExplosionEffect = preload("res://ExplosionEffect.tscn")
+const LaserHitEffect = preload("res://LaserHitEffect.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready(): 
@@ -24,9 +25,16 @@ func _physics_process(delta):
 func _on_Enemy_body_entered(body):
 	body.queue_free()
 	ARMOR -= 1
+	laser_hit_effect()
 	if ARMOR <= 0:
 		emit_signal('killed')
 		explode()
+
+func laser_hit_effect():
+	var laser_hit_effect = LaserHitEffect.instance()
+	laser_hit_effect.global_position = global_position
+	var world = get_tree().current_scene
+	world.add_child(laser_hit_effect)
 
 func explode():
 	var explosion_effect = ExplosionEffect.instance()
