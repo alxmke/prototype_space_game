@@ -16,3 +16,9 @@ func set_score(value):
 
 func _on_Enemy_killed():
 	self.score += 10
+
+
+func _on_Ship_game_over():
+	yield(get_tree().create_timer(3), "timeout")
+	# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://EndMenu.tscn")

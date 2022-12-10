@@ -47,3 +47,7 @@ __meta__ = {
 }
 
 [node name="StarParticles" parent="." instance=ExtResource( 7 )]
+
+[connection signal="game_over" from="Ship" to="." method="_on_Ship_game_over"]
+
+[editable path="Ship"]
