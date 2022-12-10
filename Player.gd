@@ -21,7 +21,7 @@ func _physics_process(delta):
 		position.x -= SPEED * delta
 	if Input.is_action_pressed("ui_right"):
 		position.x += SPEED * delta
-	if Input.is_action_pressed("ui_accept") and fire_ready:
+	if Input.is_action_pressed("fire") and fire_ready:
 		fire_laser()
 
 func fire_laser():
