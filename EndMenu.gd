@@ -1,7 +1,11 @@
 extends Node
 
+onready var highscore = $Highscore
+
 # Called when the node enters the scene tree for the first time.
-func _ready(): pass
+func _ready():
+	var save_data = Storage.from_file()
+	highscore.text = "highscore: " + str(save_data.highscore)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

@@ -16,9 +16,15 @@ func set_score(value):
 
 func _on_Enemy_killed():
 	self.score += 10
-
+	
+func update_save_file():
+	var save_data = Storage.from_file()
+	if score > save_data.highscore:
+		save_data.highscore = score
+		Storage.to_file(save_data)
 
 func _on_Ship_game_over():
+	update_save_file()
 	yield(get_tree().create_timer(3), "timeout")
 	# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://EndMenu.tscn")
